@@ -1,0 +1,37 @@
+trigger:
+- main
+
+variables:
+  azureSubscription: 'Your-Service-Connection'
+  azureResourceGroup: 'aks-flask-rg'
+  azureCluster: 'aks-flask'
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildImage
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'YourACRServiceConnection'
+        repository: 'flask-api'
+        command: 'buildAndPush'
+        Dockerfile: 'app/Dockerfile'
+        tags: 'latest'
+
+- stage: Deploy
+  jobs:
+  - job: DeployHelm
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: '$(azureSubscription)'
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          az aks get-credentials --resource-group $(azureResourceGroup) --name $(azureCluster)
+          helm upgrade --install flask-app ./helm/flask-chart --set image.repository=<your-acr-name>.azurecr.io/flask-api,image.tag=latest
