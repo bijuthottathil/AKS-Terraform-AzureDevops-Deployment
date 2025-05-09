@@ -13,7 +13,7 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'biju-acr-service-connection'
+        containerRegistry: 'biju-acr-service-connection-serviceprincipal'
         repository: 'flask-api'
         command: 'buildAndPush'
         Dockerfile: 'app/Dockerfile'
