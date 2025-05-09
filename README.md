@@ -1,4 +1,6 @@
 # AKSwithADO
+![image](https://github.com/user-attachments/assets/e33e73be-2ac7-411a-8fb7-829a3d9bb92a)
+
 
 1) CD Infra
 2) Terraform init ![image](https://github.com/user-attachments/assets/ba7744dd-992f-4af5-adaa-145727a19ffb)
