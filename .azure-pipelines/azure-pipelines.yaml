@@ -1,9 +1,20 @@
 trigger:
 - main
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo "Hello, Azure DevOps Pipeline!"
-  displayName: 'Print Hello Message'
+variables:
+  azureSubscription: '60c44961-5e43-4545-8dec-800ae7a7f22d'
+  azureResourceGroup: 'aks-flask-rg'
+  azureCluster: 'aks-flask'
+stages:
+- stage: Build
+  jobs:
+  - job: BuildImage
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'bijuregistrynew-connection'
+        repository: 'flask-api'
+        command: 'buildAndPush'
+        Dockerfile: 'app/Dockerfile'
+        tags: 'latest'
