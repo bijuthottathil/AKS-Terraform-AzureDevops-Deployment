@@ -8,10 +8,12 @@
 ![image](https://github.com/user-attachments/assets/1b464364-d52e-4b30-8bcb-1b820077d44b)
 
 
-Next Build & Push Docker Image
-Time being I buil docker image  and push to my git docker hub ![image](https://github.com/user-attachments/assets/a3f96872-a3b0-4015-b73b-110c49f2c521)
+Next Build & Push Docker Image to the Azure Container Registry
 
-![image](https://github.com/user-attachments/assets/eac299c5-7068-4e14-b326-1d48abd821ac)
+docker push bijuregristrynew.azurecr.io/flask-api:latest  
+(3.10.12) bijum@MacBook-Pro infra % docker push bijuthottathil/flask-api:latest      
+
+
 
 Deploy Flask App Using Helm
 
@@ -38,6 +40,9 @@ TEST SUITE: None
 Set Up Azure DevOps CI/CD Pipeline
 
 ![image](https://github.com/user-attachments/assets/7a014646-45ac-4f7a-a9c5-ffae865755f0)
+
+Azure Registry created 
+![image](https://github.com/user-attachments/assets/3bdb6bd9-21cd-4d2c-8a1d-602ad4fc2e53)
 
 create pipe line
 
