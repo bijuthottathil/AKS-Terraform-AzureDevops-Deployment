@@ -33,3 +33,11 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 (3.10.12) bijum@MacBook-Pro flask-chart %     
+
+
+Set Up Azure DevOps CI/CD Pipeline
+
+![image](https://github.com/user-attachments/assets/7a014646-45ac-4f7a-a9c5-ffae865755f0)
+
+create pipe line
+
