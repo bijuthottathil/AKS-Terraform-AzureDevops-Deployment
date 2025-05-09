@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: <your-docker-image>
+  repository: bijuregristrynew.azurecr.io/flask-api 
   tag: latest
 service:
   type: LoadBalancer

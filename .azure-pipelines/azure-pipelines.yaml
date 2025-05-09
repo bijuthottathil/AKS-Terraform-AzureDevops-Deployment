@@ -18,3 +18,17 @@ stages:
         command: 'buildAndPush'
         Dockerfile: 'app/Dockerfile'
         tags: 'latest'
+- stage: Deploy
+  jobs:
+  - job: DeployHelm
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: '$(azureSubscription)'
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          az aks get-credentials --resource-group $(azureResourceGroup) --name $(azureCluster)
+          helm upgrade --install flask-app ./helm/flask-chart --set image.repository=bijuregristrynew.azurecr.io/flask-api,image.tag=latest

@@ -8,7 +8,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "aks-flask-rg"
+  name     = "aks-flask-rgnew"
   location = "East US"
 }
 
