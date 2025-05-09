@@ -41,3 +41,9 @@ Set Up Azure DevOps CI/CD Pipeline
 
 create pipe line
 
+![image](https://github.com/user-attachments/assets/b5536eaa-1286-4a51-a8c8-1f01042f72e1)
+
+![image](https://github.com/user-attachments/assets/3a0aa55f-5f47-48ca-b44e-1d6f5b28158f)
+
+
+![image](https://github.com/user-attachments/assets/7689c764-23e0-47c7-b4c4-31495ecd44cf)
