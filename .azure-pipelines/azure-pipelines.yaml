@@ -2,7 +2,7 @@ trigger:
 - main
 variables:
   azureSubscription: '60c44961-5e43-4545-8dec-800ae7a7f22d'
-  azureResourceGroup: 'aks-flask-rg'
+  azureResourceGroup: 'aks-flask-rgnew'
   azureCluster: 'aks-flask'
 stages:
 - stage: Build
