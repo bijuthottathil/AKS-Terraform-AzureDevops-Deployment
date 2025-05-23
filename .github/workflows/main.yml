@@ -9,7 +9,7 @@ on:
 
 env:
   # --- IMPORTANT: Configure these variables ---
-  AZURE_RESOURCE_GROUP_TO_EXPORT: "my-existing-resource-group" # Replace with the name of your Azure RG
+  AZURE_RESOURCE_GROUP_TO_EXPORT: "rg-adf-central" # Replace with the name of your Azure RG
   # ------------------------------------------
 
 permissions:
@@ -59,14 +59,7 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "github-actions@github.com"
 
-    - name: Commit and Push Terraform files
-      if: steps.aztfexport.outputs.AZTFEXPORT_SUCCESS == 'true'
-      run: |
-        git add . # Add all generated files
-        git commit -m "feat: Exported Azure resources from ${{ env.AZURE_RESOURCE_GROUP_TO_EXPORT }} [skip ci]" || echo "No changes to commit"
-        git push
-      env:
-        # Use a PAT or GITHUB_TOKEN if pushing to a protected branch
+         # Use a PAT or GITHUB_TOKEN if pushing to a protected branch
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # The default GITHUB_TOKEN usually has enough permissions for pushes to the same repo.
         # [skip ci] in commit message prevents infinite workflow loops if push triggers workflow again
