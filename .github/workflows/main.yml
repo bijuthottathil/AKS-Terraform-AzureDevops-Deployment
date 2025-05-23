@@ -30,36 +30,3 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-    - name: Install aztfexport
-      run: |
-        curl -sL https://aka.ms/install-aztfexport-linux | bash
-        sudo mv aztfexport /usr/local/bin/
-
-    - name: Run aztfexport
-      id: aztfexport # Assign an ID to this step to access its outputs
-      run: |
-        echo "Running aztfexport for resource group: ${{ env.AZURE_RESOURCE_GROUP_TO_EXPORT }}"
-        # The --non-interactive flag is crucial for GitHub Actions
-        # It will export all resources in the RG without prompting for confirmation
-        aztfexport resource-group ${{ env.AZURE_RESOURCE_GROUP_TO_EXPORT }} --non-interactive
-
-        # Check if aztfexport generated any .tf files (indicating success)
-        if ls *.tf 1> /dev/null 2>&1; then
-          echo "AZTFEXPORT_SUCCESS=true" >> "$GITHUB_OUTPUT"
-        else
-          echo "AZTFEXPORT_SUCCESS=false" >> "$GITHUB_OUTPUT"
-        fi
-      # Continue on error for this step if aztfexport might fail but we still want to commit logs
-      # continue-on-error: true
-
-    - name: Configure Git
-      if: steps.aztfexport.outputs.AZTFEXPORT_SUCCESS == 'true'
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "github-actions@github.com"
-
-         # Use a PAT or GITHUB_TOKEN if pushing to a protected branch
-        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # The default GITHUB_TOKEN usually has enough permissions for pushes to the same repo.
-        # [skip ci] in commit message prevents infinite workflow loops if push triggers workflow again
